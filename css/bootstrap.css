@@ -6054,7 +6054,7 @@ html, body {
 	display: inline-block;
 	float : right;
 	opacity: .75;
-	max-height:100px;
+	max-height:75px;
 	width:auto;
 	-webkit-transition: opacity .25s ease;
 	-moz-transition: opacity .25s ease;

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Day Like Today</title>
+    <meta charset="utf-8">
+	<meta name="author" content="Theodore Savvidis">
+    <meta name="description" content="Day Like Today">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+	<link href="css/bootstrap.css" rel="stylesheet">
+	
+	<link rel="shortcut icon" href="img/Rollback_icon.ico" />
+	<link rel="apple-touch-icon" href="img/Rollback_icon.png" />
+	 
+    <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+  </head>
+</html>
+<body>
+  <script type="text/javascript" src="./lib/jquery-min.js"></script>
+ 
+	<div class="container" 	>
+		<div style="width:950px; display: inline-table; text-align:center;	position: relative; 	margin: 10px auto 10px auto;">
+			<a href="#"><img class="brand" style="float:left" src="img/logo.png" alt="DayLikeToday"></a>
+			<a href="http://gr.okfn.org/en/"><img class="brand" src="img/okfn.png" alt="okfn"></a>
+			<a href="http://el.wikipedia.org/"><img class="brand" src="img/wiki.png" alt="wikipedia"></a>
+			<a href="http://el.dbpedia.org/"><img class="brand" src="img/dbpedia.png" alt="dbpedia"></a>
+		</div>
+	</div>
+	<div class="container" 	style="border-top: 1px solid #e3e3e3;	border-bottom: 1px solid #e3e3e3;">
+		<div style="width:100%;	text-align:center;	position: relative; 	margin: 10px auto 10px auto;">
+
+			<select id="day_pick" style="margin: auto auto 0px auto;" class="input-mini">
+					<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option>
+					<option value="07">07</option><option value="08">08</option><option value="09">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option>
+					<option value="13">13</option><option value="14">14</option><option value="15">15</option><option value="16">16</option><option value="17">17</option><option value="18">18</option>
+					<option value="19">19</option><option value="20">20</option><option value="21">21</option><option value="22">22</option><option value="23">23</option><option value="24">24</option>
+					<option value="25">25</option><option value="26">26</option><option value="27">27</option><option value="28">28</option><option value="29">29</option><option value="30">30</option><option value="31">31</option>							
+			</select>
+			<select id="month_pick" style="margin: auto auto 0px auto;" class="input-medium">
+					<option value="01">January</option>
+					<option value="02">February</option>
+					<option value="03">March</option>
+					<option value="04">April</option>
+					<option value="05">May</option>
+					<option value="06">June</option>
+					<option value="07">July</option>
+					<option value="08">August</option>
+					<option value="09">September</option>					
+					<option value="10">October</option>					
+					<option value="11">November</option>					
+					<option value="12">December</option>					
+			</select>	
+			<select id="lang" style="margin: auto auto 0px auto;" class="input-medium">
+				<option value="el">Greek</option>
+				<option value="en">English</option>
+				<option value="de">German</option>			
+			</select>
+			<button id="submit" class="btn btn-primary btn" >Submit</button>
+		</div>
+	</div>
+
+	<div id="timeline-embed"></div>
+
+  
+  
+  
+  <script type="text/javascript">
+    
+	
+	var d = new Date();
+	var day = d.getUTCDate();
+	var month =d.getUTCMonth()+1;
+	if (day<10) day="0"+day;
+	if (month<10) month="0"+month;	
+	var file="json/el/"+day+"_"+month+".json";
+
+	var timeline_config = {
+		 width: "100%",
+		 height: "90%",
+		 lang:"en",
+		 start_at_slide : '0',
+		 source: file
+    };
+	
+	$(document).ready(function() {
+		$("#submit").click(function () {
+			var language = $("#lang").val();
+			var file="./json/"+language+"/"+$("#day_pick").val()+"_"+$("#month_pick").val()+".json";
+			timeline_config = {
+				 width: "100%",
+				 height: "90%",
+				 lang: language,
+				 start_at_slide : '0',
+				 source: file
+			};
+			
+			document.getElementById("timeline-embed").innerHTML="";
+			var dataSource = document.getElementById("script_timeline").src;
+			newScript=document.createElement('script');
+			newScript.src=dataSource;
+			document.getElementsByTagName('body')[0].appendChild(newScript);
+			
+		});
+	});
+  </script>
+  
+
+	<script id="script_timeline" type="text/javascript" src="./js/storyjs-embed.js"></script>
+	
+	<br>
+	<div class="container">
+		<p style="text-align:center">
+			&copy; 2012-Today, <a href="http://tsv.gr">TsV Web solutions</a>. Designed by Theodore Savvidis.
+		</p>
+	</div>
+
+</body>

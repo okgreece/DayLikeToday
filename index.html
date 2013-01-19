@@ -30,7 +30,7 @@
 		</div>
 	</div>
 	<div class="container" 	style="border-top: 1px solid #e3e3e3;	border-bottom: 1px solid #e3e3e3;">
-		<div style="width:100%;	text-align:center;	position: relative; 	margin: 10px auto 10px auto;">
+		<div style="width:100%;	text-align:center;	position: relative; 	margin: 5px auto 5px auto;">
 			<a class="btn" href="https://github.com/okfngr/DayLikeToday.git" target="_blank"><img width="22" height="22" src="img/github-icon.png"/>  GitHub project</a>
 			<select id="day_pick" style="margin: auto auto 0px auto;" class="input-mini">
 					<option value="01">01</option><option value="02">02</option><option value="03">03</option><option value="04">04</option><option value="05">05</option><option value="06">06</option>
@@ -58,7 +58,7 @@
 				<option value="en">English</option>
 				<option value="de">German</option>			
 			</select>
-			<button id="submit" class="btn btn-primary btn" >Submit</button> 
+			<button id="submit" class="btn btn-primary btn" >Show</button> 
 		</div>
 		
 	</div>
@@ -83,7 +83,7 @@
 	var timeline_config = {
 		 width: "100%",
 		 height: "90%",
-		 lang:"en",
+		 lang:"el",
 		 start_at_slide : '0',
 		 source: file
     };
@@ -91,7 +91,7 @@
 	$(document).ready(function() {
 		$("#submit").click(function () {
 			var language = $("#lang").val();
-			var file="./json/"+language+"/"+$("#day_pick").val()+"_"+$("#month_pick").val()+".json";
+			var file="json/"+language+"/"+$("#day_pick").val()+"_"+$("#month_pick").val()+".json";
 			timeline_config = {
 				 width: "100%",
 				 height: "90%",
@@ -106,17 +106,21 @@
 			newScript.src=dataSource;
 			document.getElementsByTagName('body')[0].appendChild(newScript);
 			
+			newScript=document.createElement('script');
+			newScript.src="js/locale/"+language+".js";
+			document.getElementsByTagName('body')[0].appendChild(newScript);
+			
 		});
 	});
   </script>
   
 
-	<script id="script_timeline" type="text/javascript" src="./js/storyjs-embed.js"></script>
+	<script id="script_timeline" type="text/javascript" src="js/storyjs-embed.js"></script>
 	
 	<br>
 	<div class="container">
 		<p style="text-align:center">
-			&copy; 2012-Today, <a href="http://tsv.gr" target="_blank">Designed by Theodore Savvidis.</a> Coordinator <a href="mailto:charalampos.bratsas@okfn.org">Charalampos Bratsas.</a>
+			&copy; 2012-Today, Created and designed by <a href="http://tsv.gr" target="_blank">Theodore Savvidis.</a> Coordinator <a href="mailto:charalampos.bratsas@okfn.org">Charalampos Bratsas.</a>
 		</p>
 	</div>
 
